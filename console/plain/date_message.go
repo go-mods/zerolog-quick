@@ -1,8 +1,9 @@
 package plain
 
 import (
-	"github.com/rs/zerolog"
 	"os"
+
+	"github.com/rs/zerolog"
 )
 
 var DateMessage = zerolog.New(

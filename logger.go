@@ -4,9 +4,11 @@ package log
 import (
 	"context"
 	"fmt"
-	"github.com/go-mods/zerolog-quick/json"
-	"github.com/rs/zerolog"
 	"io"
+
+	"github.com/rs/zerolog"
+
+	"github.com/go-mods/zerolog-quick/json"
 )
 
 // Logger is the global logger.

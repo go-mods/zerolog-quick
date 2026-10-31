@@ -2,6 +2,7 @@ package colored
 
 import (
 	"bytes"
+
 	"github.com/gookit/color"
 	"github.com/rs/zerolog"
 )

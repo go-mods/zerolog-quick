@@ -1,8 +1,9 @@
 package json
 
 import (
-	"github.com/rs/zerolog"
 	"os"
+
+	"github.com/rs/zerolog"
 )
 
 // Default is the default global logger

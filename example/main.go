@@ -3,10 +3,11 @@ package main
 import (
 	"os"
 
+	"github.com/rs/zerolog"
+
 	log "github.com/go-mods/zerolog-quick"
 	"github.com/go-mods/zerolog-quick/console/colored"
 	"github.com/go-mods/zerolog-quick/console/plain"
-	"github.com/rs/zerolog"
 )
 
 func main() {

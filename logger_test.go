@@ -1,16 +1,18 @@
 package log_test
 
 import (
-	log "github.com/go-mods/zerolog-quick"
-	"github.com/go-mods/zerolog-quick/console/colored"
-	"github.com/go-mods/zerolog-quick/console/plain"
-	"github.com/rs/zerolog"
-	"github.com/rs/zerolog/pkgerrors"
-	"gopkg.in/natefinch/lumberjack.v2"
 	"io"
 	"os"
 	"testing"
 	"time"
+
+	"github.com/rs/zerolog"
+	"github.com/rs/zerolog/pkgerrors"
+	"gopkg.in/natefinch/lumberjack.v2"
+
+	log "github.com/go-mods/zerolog-quick"
+	"github.com/go-mods/zerolog-quick/console/colored"
+	"github.com/go-mods/zerolog-quick/console/plain"
 )
 
 func TestConsolePlainMessage(t *testing.T) {

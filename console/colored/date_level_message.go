@@ -2,9 +2,10 @@ package colored
 
 import (
 	"fmt"
-	"github.com/rs/zerolog"
 	"os"
 	"strings"
+
+	"github.com/rs/zerolog"
 )
 
 var DateLevelMessage = zerolog.New(
