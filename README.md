@@ -32,7 +32,7 @@ func main() {
 
 #### Plain Console Loggers
 
-The plain console logger writes to `os.Stderr` and does not use any colors:
+The plain console logger writes to `os.Stdout` and does not use any colors:
 
 ```go
 import (
@@ -61,7 +61,7 @@ func main() {
 
 #### Colored Console Loggers
 
-The colored console logger writes to `os.Stderr` and uses colors:
+The colored console logger writes to `os.Stdout` and uses colors:
 
 ```go
 import (
@@ -85,6 +85,54 @@ func main() {
     // Colored date, time, level, and message
     log.Logger = colored.DateTimeLevelMessage
     log.Info().Msg("Colored info message with date, time, and level")
+}
+```
+
+### Custom Output
+
+Every console logger has a constructor that returns the same logger writing to the `io.Writer` of your choice. It must not be nil:
+
+| Logger | Constructor |
+|--------|-------------|
+| `Message` | `NewMessage(w)` |
+| `DateMessage` | `NewDateMessage(w)` |
+| `DateTimeMessage` | `NewDateTimeMessage(w)` |
+| `DateLevelMessage` | `NewDateLevelMessage(w)` |
+| `DateTimeLevelMessage` | `NewDateTimeLevelMessage(w)` |
+
+They are available in both the `plain` and `colored` packages:
+
+```go
+import (
+    "os"
+
+    log "github.com/go-mods/zerolog-quick"
+    "github.com/go-mods/zerolog-quick/console/colored"
+)
+
+func main() {
+    // Keep stdout for the output of the program
+    log.Logger = colored.NewDateTimeLevelMessage(os.Stderr)
+    log.Info().Msg("Colored info message on stderr")
+}
+```
+
+Use these constructors rather than the `Output` method of a console logger: `Output` replaces the console formatting, and the logger then writes JSON.
+
+Colors depend on the environment of the process, not on the writer: a `colored` logger can write color codes to a file or a pipe. Use the `plain` logger when the output is not a terminal.
+
+For the JSON logger, `Output` is all you need:
+
+```go
+import (
+    "os"
+
+    "github.com/go-mods/zerolog-quick/json"
+)
+
+func main() {
+    logger := json.Default.Output(os.Stdout)
+    logger.Info().Msg("JSON info message on stdout")
 }
 ```
 
