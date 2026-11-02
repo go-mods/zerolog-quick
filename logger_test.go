@@ -273,6 +273,29 @@ func TestConsoleLoggers(t *testing.T) {
 	}
 }
 
+func TestConsoleLoggersWithNilWriter(t *testing.T) {
+	constructors := map[string]func(io.Writer) zerolog.Logger{
+		"plain.NewMessage":                plain.NewMessage,
+		"plain.NewDateMessage":            plain.NewDateMessage,
+		"plain.NewDateTimeMessage":        plain.NewDateTimeMessage,
+		"plain.NewDateLevelMessage":       plain.NewDateLevelMessage,
+		"plain.NewDateTimeLevelMessage":   plain.NewDateTimeLevelMessage,
+		"colored.NewMessage":              colored.NewMessage,
+		"colored.NewDateMessage":          colored.NewDateMessage,
+		"colored.NewDateTimeMessage":      colored.NewDateTimeMessage,
+		"colored.NewDateLevelMessage":     colored.NewDateLevelMessage,
+		"colored.NewDateTimeLevelMessage": colored.NewDateTimeLevelMessage,
+	}
+
+	for name, build := range constructors {
+		t.Run(name, func(t *testing.T) {
+			logger := build(nil)
+
+			assert.NotPanics(t, func() { logger.Info().Msg("Info message") })
+		})
+	}
+}
+
 func TestJsonDefault(t *testing.T) {
 	stdout, stderr := runChild(t, childJSON)
 

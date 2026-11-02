@@ -11,11 +11,11 @@ import (
 var DateTimeMessage = NewDateTimeMessage(os.Stdout)
 
 // NewDateTimeMessage returns a logger formatted like DateTimeMessage that writes to w.
-// w must not be nil.
+// A nil w discards the output.
 func NewDateTimeMessage(w io.Writer) zerolog.Logger {
 	return zerolog.New(
 		zerolog.ConsoleWriter{
-			Out:        w,
+			Out:        output(w),
 			NoColor:    true,
 			TimeFormat: "2006-01-02 15:04:05",
 			PartsOrder: []string{

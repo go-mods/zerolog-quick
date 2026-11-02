@@ -12,7 +12,7 @@ import (
 )
 
 // Logger is the global logger.
-// It use the default zerolog global logger defined in json module
+// It uses the default zerolog global logger defined in the json module.
 var Logger = json.Default
 
 // Output duplicates the global logger and sets w as its output.

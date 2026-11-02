@@ -13,11 +13,11 @@ import (
 var DateLevelMessage = NewDateLevelMessage(os.Stdout)
 
 // NewDateLevelMessage returns a logger formatted like DateLevelMessage that writes to w.
-// w must not be nil.
+// A nil w discards the output.
 func NewDateLevelMessage(w io.Writer) zerolog.Logger {
 	return zerolog.New(
 		zerolog.ConsoleWriter{
-			Out:        w,
+			Out:        output(w),
 			NoColor:    true,
 			TimeFormat: "2006-01-02",
 			PartsOrder: []string{

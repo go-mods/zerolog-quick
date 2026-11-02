@@ -90,7 +90,7 @@ func main() {
 
 ### Custom Output
 
-Every console logger has a constructor that returns the same logger writing to the `io.Writer` of your choice. It must not be nil:
+Every console logger has a constructor that returns the same logger writing to the `io.Writer` of your choice. A nil writer discards the output:
 
 | Logger | Constructor |
 |--------|-------------|

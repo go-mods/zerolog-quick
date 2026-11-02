@@ -11,11 +11,11 @@ import (
 var Message = NewMessage(os.Stdout)
 
 // NewMessage returns a logger formatted like Message that writes to w.
-// w must not be nil.
+// A nil w discards the output.
 func NewMessage(w io.Writer) zerolog.Logger {
 	return zerolog.New(
 		zerolog.ConsoleWriter{
-			Out:     w,
+			Out:     output(w),
 			NoColor: true,
 			PartsOrder: []string{
 				zerolog.MessageFieldName,
